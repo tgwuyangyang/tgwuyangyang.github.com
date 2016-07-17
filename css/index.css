@@ -1,0 +1,13 @@
+.catalog a {
+	color: 303030;
+}
+
+.catalog .gap {
+	margin-left: 10px;
+}
+
+.time {
+	float: right;
+	font-size: 14px;
+	color: #a9a9a9;
+}
