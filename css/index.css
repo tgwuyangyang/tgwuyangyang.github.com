@@ -1,9 +1,13 @@
-.catalog a {
-	color: 303030;
+.catalog span {
+	margin-left: 10px;
+	color: #303030;
+	font-size: 17px;
+	font-weight: bolder;
+	cursor: pointer;
 }
 
-.catalog .gap {
-	margin-left: 10px;
+.null {
+   margin-left: 35%
 }
 
 .time {
