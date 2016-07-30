@@ -43,7 +43,7 @@ var initName = function() {
    if(content.length < 1) {
       html += '<span class="null">敬请期待</span>';
    }
-   
+
    $("#main_content").html(html);
 }
 
@@ -51,7 +51,8 @@ var initName = function() {
 $(".catalog").delegate("span", "click",  function() {
    var $this = $(this);
    type = $this.attr("type");
-   
+   $this.addClass("color").siblings().removeClass("color");
+
    initName();
 });
 
