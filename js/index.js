@@ -2,7 +2,7 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "2", "name": "html"}, 
             {"id": "3", "name": "github"}, 
             {"id": "3", "name": "mui"}];
-var java = [];
+var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-30"}];
 var html = [];
 var github = [{"id": "1", "name": "github常用命令", "time": "2016-07-24"}];
 var type = "java";
@@ -10,11 +10,11 @@ var type = "java";
 // 初始化title
 var initTitle = function() {
    var html = "";
-   
+
    for(var i = 0; i < menu.length; i++) {
       html += '<span type=' + menu[i].name + '>' + menu[i].name + '</span>';
    }
-   
+
    $(".catalog").html(html);
 }
 
@@ -22,7 +22,7 @@ var initTitle = function() {
 var initName = function() {
    var html = "";
    var content = [];
-   
+
    if(type == "java") {
       content = java;
    }
@@ -35,11 +35,11 @@ var initName = function() {
 
    for(var i = 0; i < content.length; i++) {
       html += '<h3>'
-            +     '<a href="#">' + content[i].name + '</a><span class="time">' + content[i].time + '</span>'
+            +     '<a href="' + content[i].url + '">' + content[i].name + '</a><span class="time">' + content[i].time + '</span>'
             + '</h3>'
             + '<hr>';
    }
-   
+
    if(content.length < 1) {
       html += '<span class="null">敬请期待</span>';
    }
