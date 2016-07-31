@@ -2,9 +2,10 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "2", "name": "html"}, 
             {"id": "3", "name": "github"}, 
             {"id": "3", "name": "mui"}];
-var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-30"}];
+var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var html = [];
-var github = [{"id": "1", "name": "github常用命令", "time": "2016-07-24"}];
+var github = [];
+var mui = [];
 var type = "java";
 
 // 初始化title
