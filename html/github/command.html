@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+      <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/github-dark.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
+      <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <title>tgwuyangyang.GitHub.com by tgwuyangyang</title>
+   </head>
+
+   <body>
+      <div id="container">
+         <div class="inner">
+            <header>
+               <h1>Tgwuyangyang.GitHub.com</h1>
+            </header>
+            <hr>
+            <p class="title"><span>git常用命令<span></p>
+            <hr>
+            <section id="main_content">
+               <p class="author">
+                  <span>作者：吴杨杨</span>
+                  <a class="back" href="../../index.html">返回首页</a>
+               </p>
+               <p class="time"><span>时间：2016-07-31</span></p>
+               <p>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。它是目前世界上最先进的分布式版本控制系统</p>
+               <p>本文列出一些常用的git命令：</p>
+               <p>git clone 从远程主机克隆一个版本库到本地</p>
+               <blockquote>
+                  <ul>
+                     <li>git clone 版本库的网址</li>
+                  </ul>
+               </blockquote>
+               <p>该命令会在本地主机生成一个目录，与远程主机的版本库同名。如果要指定不同的目录名，可以将目录名作为git clone命令的第二个参数。</p>
+               <blockquote>
+                  <ul>
+                     <li>git clone 版本库的网址 本地目录名</li>
+                  </ul>
+               </blockquote>
+               <p>git status命令可以让我们时刻掌握仓库当前的状态</p>
+               <blockquote>
+                  <ul>
+                     <li>git status</li>
+                  </ul>
+               </blockquote>
+               <p>git add命令主要用于把我们要提交的文件的信息添加到索引库中</p>
+               <blockquote>
+                  <ul>
+                     <li>git add 文件名</li>
+                  </ul>
+               </blockquote>
+               <p>或者</p>
+               <blockquote>
+                  <ul>
+                     <li>git add --all</li>
+                  </ul>
+               </blockquote>
+               <p>git add --all命令添加所有的文件到索引库中</p>
+               <p>git commit 将索引内容添加到仓库中。</p>
+               <blockquote>
+                  <ul>
+                     <li>git commit -m '备注'</li>
+                  </ul>
+               </blockquote>
+               <p>也可以使用github for window 客户端，选中你所要提交的内容，添加备注，然后点击‘Commit to master’这个时候，就OK了</p>
+               <p>这个时候，只是将内容提交到本地仓库中，我们还需要将内容提交到服务器，可以用git push命令</p>
+               <blockquote>
+                  <ul>
+                     <li>git push</li>
+                  </ul>
+               </blockquote>
+               <p>使用git push提交到服务器前，如果本地内容不是最新的，应该先从服务区更新内容到本地，使用git pull</p>
+               <blockquote>
+                  <ul>
+                     <li>git pull</li>
+                  </ul>
+               </blockquote>
+               <p>git commit之后使用git pull更新本地内容，这时再使用git push将内容推送到服务器</p>
+               <p>命令顺序是：</p>
+               <blockquote>
+                  <ul>
+                     <li>git commit -m '备注'</li>
+                     <li>git pull</li>
+                     <li>git push</li>
+                  </ul>
+               </blockquote>
+               <p>如果以上步骤git pull 或者git push不起作用，出了未知错误，你解决不了时使用git reset --hard HEAD^ 让本地内容回滚到上一个版本
+               </p>
+               <blockquote>
+                  <ul>
+                     <li>git reset --hard HEAD^</li>
+                  </ul>
+               </blockquote>
+               <p>HEAD是当前版本的意思，HEAD^就是上一个版本，HEAD^^就是上上一个版本</p>
+               <p>或者，你想回滚到某个版本，先使用git log查看日志</p>
+               <blockquote>
+                  <ul>
+                     <li>git log</li>
+                  </ul>
+               </blockquote>
+               <p>然后使用 git reset --hard 将本地仓库内容回滚到指定的版本</p>
+               <blockquote>
+                  <ul>
+                     <li>git reset --hard 版本号</li>
+                  </ul>
+               </blockquote>
+               <p>版本号不用全部复制，只需用前几个字符就OK</p>
+               <p>如果你的版本是这样的 1、2、3、4、5，当你使用后 git reset --hard 3，回滚到版本3的内容后。第二天你打开电脑，你又想回到版本4，这时你使用 git log 看不见版本4的版本号，怎么办？</p>
+               <blockquote>
+                  <ul>
+                     <li>git reflog</li>
+                  </ul>
+               </blockquote>
+               <p>git reflog 查看历史记录</p>
+               <p>然后再执行 git reset --hard 版本号，OK，你又回到版本4了</p>
+               <p>以上。</p>
+               <hr>
+               <section id="downloads" class="clearfix">
+               <a href="../../index.html">返回首页</a>
+               <a style="float:right;" href="https://github.com/tgwuyangyang" id="view-on-github" class="button">
+                  <span>View on GitHub</span>
+               </a>
+            </section>
+            </section>
+            <footer>
+               <table><tr><td>This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</td></tr></table>
+            </footer>
+         </div>
+      </div>
+      <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+   </body>
+</html>

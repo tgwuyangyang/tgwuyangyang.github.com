@@ -9,3 +9,22 @@ blockquote {
 blockquote ul {
    margin-bottom: 0px;
 }
+
+.author .back {
+   font-size: 15px;
+   float: right;
+}
+
+.title {
+   text-align: center;
+}
+
+.author span {
+   font-size: 14px;
+   color: #000000;
+}
+
+.time span {
+   font-size: 14px;
+   color: #000000;
+}

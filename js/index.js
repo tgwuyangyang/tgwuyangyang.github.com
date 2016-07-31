@@ -4,7 +4,7 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "3", "name": "mui"}];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var html = [];
-var github = [];
+var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-24"}];
 var mui = [];
 var type = "java";
 
