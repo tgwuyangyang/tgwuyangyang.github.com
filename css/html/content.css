@@ -28,3 +28,7 @@ blockquote ul {
    font-size: 14px;
    color: #000000;
 }
+
+.border-none {
+   border: none;
+}
