@@ -4,15 +4,15 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "3", "name": "mui"}];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var html = [];
-var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-24"}];
+var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [];
 var type = "java";
 
 // 初始化title
 var initTitle = function() {
-   var html = "";
+   var html = '<span type="java" class="color">java</span>';
 
-   for(var i = 0; i < menu.length; i++) {
+   for(var i = 1; i < menu.length; i++) {
       html += '<span type=' + menu[i].name + '>' + menu[i].name + '</span>';
    }
 
@@ -58,6 +58,6 @@ $(".catalog").delegate("span", "click",  function() {
 });
 
 $(document).ready(function() {
-   initTitle();
    initName();
+   initTitle();
 });
