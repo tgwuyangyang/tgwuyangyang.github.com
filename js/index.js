@@ -1,9 +1,9 @@
 var menu = [{"id": "1", "name": "java"}, 
-            {"id": "2", "name": "html"}, 
+            {"id": "2", "name": "javaScript"}, 
             {"id": "3", "name": "github"}, 
-            {"id": "3", "name": "mui"}];
+            {"id": "4", "name": "mui"}];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
-var html = [];
+var javaScript = [{"id": "1", "name": "iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-07-31"}];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [];
 var type = "java";
@@ -27,8 +27,8 @@ var initName = function() {
    if(type == "java") {
       content = java;
    }
-   else if(type == "html") {
-      content = html;
+   else if(type == "javaScript") {
+      content = javaScript;
    }
    else if(type == "github") {
       content = github;
