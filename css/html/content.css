@@ -10,6 +10,20 @@ blockquote ul {
    margin-bottom: 0px;
 }
 
+pre {
+   padding: 20px 10px 0px 10px;
+   margin-bottom: 20px;
+   background-color: #ffffff;
+   border-radius: 5px;
+}
+
+pre code {
+   padding 0px;
+   margin-bottom: 0px;
+   background-color: #ffffff;
+   color: #000000;
+}
+
 .author .back {
    font-size: 15px;
    float: right;
