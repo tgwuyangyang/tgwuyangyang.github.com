@@ -47,3 +47,21 @@ pre code {
 .border-none {
    border: none;
 }
+
+h3 {
+   position: relative;
+}
+
+h3 a {
+   display: block;
+   white-space: nowrap;
+   width: 60%;
+   overflow: hidden;
+   text-overflow:ellipsis;
+}
+
+h3 span {
+   position: absolute;
+   bottom: 20%;
+   right: 10px;
+}
