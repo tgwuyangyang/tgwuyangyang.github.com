@@ -1,13 +1,16 @@
 var menu = [{"id": "1", "name": "java"}, 
             {"id": "2", "name": "javaScript"}, 
             {"id": "3", "name": "github"}, 
-            {"id": "4", "name": "mui"}];
+            {"id": "4", "name": "mui"},
+            {"id": "5", "name": "css"}
+           ];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-08-02"},
                   {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"}
                   ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [];
+var css = [];
 var type = "java";
 
 // 初始化title
@@ -34,6 +37,9 @@ var initName = function() {
    }
    else if(type == "github") {
       content = github;
+   }
+   else if(type == "css") {
+      content = css;
    }
 
    for(var i = 0; i < content.length; i++) {
