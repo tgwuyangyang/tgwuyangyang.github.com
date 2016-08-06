@@ -19,20 +19,53 @@
                <h1>Tgwuyangyang.GitHub.com</h1>
             </header>
             <hr>
-            <p class="title"><span>git常用命令<span></p>
+            <p class="title"><span>angularjs学习笔记--iphone上时间转换NaN问题<span></p>
             <hr>
             <section id="main_content">
                <p class="author">
                   <span>作者：吴杨杨</span>
                   <a class="back" href="../../index.html">返回首页</a>
                </p>
-               <p class="time"><span>时间：2016-07-31</span></p>
+               <p class="time"><span>时间：2016-08-06</span></p>
                <p>一周以前，我遇到一个问题，当时后台传来一个时间，格式是这样的</p>
                <blockquote>
                   <ul>
                      <li>2016-07-31 11:20:30.0</li>
                   </ul>
                </blockquote>
+               <p>由于用的是angularjs框架，所以值就这么显示在了页面上</p>
+               <p>然后，给我分了一个bug，要让我将后面的.0去掉。我一看，这多简单啊，一格式化不就好了</p>
+               <pre><code>var time = new Date(parameter);<br>format(time); // 格式化（yyyy-MM-dd HH:mm:ss）
+               </code></pre>
+               <p>Google Chrome上一调试，好了。</p>
+               <p>过了一会，我无意中拿出了手机，上企业号上一看，时间显示NaN。马上打开代码检查，重新部署了一下，Chrome上测试，确实没问题。然后，iphone真机测试，还是乱码。我去，瞬间凌乱了......</p>
+               <p>没办法了，只好使出杀手锏。传说中的截取字符串，把最后两位截掉，终于好了。</p>
+               <pre><code>var str = "2016-07-31 11:20:30.0";<br>str = str.substring(0, 19);
+               </code></pre>
+               <p>几天后，又来一个bug，时间格式是这样的</p>
+               <blockquote>
+                  <ul>
+                     <li>2016-7-31 11:20:30</li>
+                  </ul>
+               </blockquote>
+               <p>让我把月份改成这样</p>
+               <blockquote>
+                  <ul>
+                     <li>2016-07-31 11:20:30</li>
+                  </ul>
+               </blockquote>
+               <p>看到这，心真的好累......</p>
+               <p>没办法，只好找出格式化失败的原因。功夫不负有心人，终于找出来了。</p>
+               <p>Safari下转换时间，需要这种格式</p>
+               <blockquote>
+                  <ul>
+                     <li>yyyy/MM/dd hh:mm:ss</li>
+                  </ul>
+               </blockquote>
+               <p>所以，这样处理时间就好了</p>
+               <pre><code>var str = "2016-07-31 11:20:30";<br>str = str.replace(/\-/g, '/');<br>str = new Date(str).getTime();
+               </code></pre>
+               <p>然后，再format就好了。</p>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">
