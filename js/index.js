@@ -12,7 +12,7 @@ var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转
                   ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [];
-var css = [];
+var css = [{"id": "1", "name": "box-sizing", "url": "html/css/box_sizing.html", "time": "2016-08-20"}];
 var type = "java";
 
 // 初始化title
