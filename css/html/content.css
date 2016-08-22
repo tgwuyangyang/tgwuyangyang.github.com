@@ -18,6 +18,10 @@ pre {
    border-radius: 5px;
 }
 
+code {
+   padding: 3px 3px;
+}
+
 pre code {
    padding 0px;
    margin-bottom: 0px;
