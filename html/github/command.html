@@ -29,25 +29,25 @@
                <p class="time"><span>时间：2016-07-31</span></p>
                <p>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。它是目前世界上最先进的分布式版本控制系统</p>
                <p>本文列出一些常用的git命令：</p>
-               <p>git clone 从远程主机克隆一个版本库到本地</p>
+               <p><code>git clone</code> 从远程主机克隆一个版本库到本地</p>
                <blockquote>
                   <ul>
                      <li>git clone 版本库的网址</li>
                   </ul>
                </blockquote>
-               <p>该命令会在本地主机生成一个目录，与远程主机的版本库同名。如果要指定不同的目录名，可以将目录名作为git clone命令的第二个参数。</p>
+               <p>该命令会在本地主机生成一个目录，与远程主机的版本库同名。如果要指定不同的目录名，可以将目录名作为<code>git clone</code>命令的第二个参数。</p>
                <blockquote>
                   <ul>
                      <li>git clone 版本库的网址 本地目录名</li>
                   </ul>
                </blockquote>
-               <p>git status命令可以让我们时刻掌握仓库当前的状态</p>
+               <p><code>git status</code>命令可以让我们时刻掌握仓库当前的状态</p>
                <blockquote>
                   <ul>
                      <li>git status</li>
                   </ul>
                </blockquote>
-               <p>git add命令主要用于把我们要提交的文件的信息添加到索引库中</p>
+               <p><code>git add</code>命令主要用于把我们要提交的文件的信息添加到索引库中</p>
                <blockquote>
                   <ul>
                      <li>git add 文件名</li>
@@ -59,27 +59,27 @@
                      <li>git add --all</li>
                   </ul>
                </blockquote>
-               <p>git add --all命令添加所有的文件到索引库中</p>
-               <p>git commit 将索引内容添加到仓库中。</p>
+               <p><code>git add --all</code>命令添加所有的文件到索引库中</p>
+               <p><code>git commit</code> 将索引内容添加到仓库中。</p>
                <blockquote>
                   <ul>
                      <li>git commit -m '备注'</li>
                   </ul>
                </blockquote>
                <p>也可以使用github for window 客户端，选中你所要提交的内容，添加备注，然后点击‘Commit to master’这个时候，就OK了</p>
-               <p>这个时候，只是将内容提交到本地仓库中，我们还需要将内容提交到服务器，可以用git push命令</p>
+               <p>这个时候，只是将内容提交到本地仓库中，我们还需要将内容提交到服务器，可以用<code>git push</code>命令</p>
                <blockquote>
                   <ul>
                      <li>git push</li>
                   </ul>
                </blockquote>
-               <p>使用git push提交到服务器前，如果本地内容不是最新的，应该先从服务区更新内容到本地，使用git pull</p>
+               <p>使用<code>git push</code>提交到服务器前，如果本地内容不是最新的，应该先从服务区更新内容到本地，使用<code>git pull</code></p>
                <blockquote>
                   <ul>
                      <li>git pull</li>
                   </ul>
                </blockquote>
-               <p>git commit之后使用git pull更新本地内容，这时再使用git push将内容推送到服务器</p>
+               <p><code>git commit</code>之后使用<code>git pull</code>更新本地内容，这时再使用<code>git push</code>将内容推送到服务器</p>
                <p>命令顺序是：</p>
                <blockquote>
                   <ul>
@@ -88,35 +88,35 @@
                      <li>git push</li>
                   </ul>
                </blockquote>
-               <p>如果以上步骤git pull 或者git push不起作用，出了未知错误，你解决不了时使用git reset --hard HEAD^ 让本地内容回滚到上一个版本
+               <p>如果以上步骤<code>git pull</code> 或者<code>git push</code>不起作用，出了未知错误，你解决不了时使用<code>git reset --hard HEAD^</code> 让本地内容回滚到上一个版本
                </p>
                <blockquote>
                   <ul>
                      <li>git reset --hard HEAD^</li>
                   </ul>
                </blockquote>
-               <p>HEAD是当前版本的意思，HEAD^就是上一个版本，HEAD^^就是上上一个版本</p>
-               <p>或者，你想回滚到某个版本，先使用git log查看日志</p>
+               <p><code>HEAD</code>是当前版本的意思，<code>HEAD^</code>就是上一个版本，<code>HEAD^^</code>就是上上一个版本</p>
+               <p>或者，你想回滚到某个版本，先使用<code>git log</code>查看日志</p>
                <blockquote>
                   <ul>
                      <li>git log</li>
                   </ul>
                </blockquote>
-               <p>然后使用 git reset --hard 将本地仓库内容回滚到指定的版本</p>
+               <p>然后使用 <code>git reset --hard</code> 将本地仓库内容回滚到指定的版本</p>
                <blockquote>
                   <ul>
                      <li>git reset --hard 版本号</li>
                   </ul>
                </blockquote>
                <p>版本号不用全部复制，只需用前几个字符就OK</p>
-               <p>如果你的版本是这样的 1、2、3、4、5，当你使用后 git reset --hard 3，回滚到版本3的内容后。第二天你打开电脑，你又想回到版本4，这时你使用 git log 看不见版本4的版本号，怎么办？</p>
+               <p>如果你的版本是这样的 1、2、3、4、5，当你使用后 <code>git reset --hard 3</code> 回滚到版本3的内容后。第二天你打开电脑，你又想回到版本4，这时你使用 <code>git log</code> 看不见版本4的版本号，怎么办？</p>
                <blockquote>
                   <ul>
                      <li>git reflog</li>
                   </ul>
                </blockquote>
-               <p>git reflog 查看历史记录</p>
-               <p>然后再执行 git reset --hard 版本号，OK，你又回到版本4了</p>
+               <p><code>git reflog</code> 查看历史记录</p>
+               <p>然后再执行 <code>git reset --hard</code> 版本号，OK，你又回到版本4了</p>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">
