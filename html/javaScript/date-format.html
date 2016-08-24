@@ -66,9 +66,9 @@
                   </ul>
                </blockquote>
                <p>所以，这样处理时间就好了</p>
-               <pre><code>var str = "2016-07-31 11:20:30";<br>str = str.replace(/\-/g, '/');<br>str = new Date(str).getTime();
+               <pre><code>var str = "2016/07/31 11:20:30";<br>str = str.replace(/\-/g, '/');<br>str = new Date(str).getTime();
                </code></pre>
-               <p>然后，再format就好了。</p>
+               <p>把‘-’换成‘/’，再format就好了。</p>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">
