@@ -74,3 +74,7 @@ a {
    -webkit-user-select: none;
    -webkit-tap-highlight-color: rgba(200,200,200,0);
 }
+
+p {
+   word-break:break-all;
+}
