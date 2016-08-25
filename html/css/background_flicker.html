@@ -34,10 +34,10 @@
                <p>最近没事拿手机访问自己的博客时，发现点击菜单和a标签的链接，背景会闪烁一下。</p>
                <p>查了下资料，原因是移动端的点击反应速度要比PC端延迟300毫秒。</p>
                <p>关于300毫秒的延迟详细信息请点击<a href="http://thx.github.io/mobile/300ms-click-delay">http://thx.github.io/mobile/300ms-click-delay</a></p>
-               <p>好吧，以前做webApp时，注意郭300毫秒延迟的事情，原以为只是影响到点击会延迟300毫秒，没想到还会对页面有影响。</p>
+               <p>好吧，以前做webApp时，注意过300毫秒延迟的事情，原以为只是影响到点击会延迟300毫秒，没想到还会对页面样式有影响。</p>
                <p>废话不多说，开始解决问题吧。</p>
-               <p>对于使用click事件引起的背景闪烁，可以自己封装tap事件来代替clicl事件，tap事件由touchstart + touchmove + touchend 事件封装组成。在此博客上的实现方式，我使用的是mui.js的tap事件。</p>
-               <pre><code>$(".catalog").delegate("span", "tap",  function() {
+               <p>对于使用click事件引起的背景闪烁，可以自己封装tap事件来代替clicl事件，tap事件由touchstart + touchmove + touchend 事件封装组成。我在此博客上的解决方式，我使用的是mui.js的tap事件。</p>
+               <pre><code>$(".catalog").delegate("span", "tap", function() {
    var $this = $(this);
    type = $this.attr("type");
    $this.addClass("color").siblings().removeClass("color");
@@ -45,15 +45,15 @@
    initName();
 });
                </code></pre>
-               <p>我的博客中解决此问题的js源代码：<a href="https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/js/index.js">https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/js/index.js</a></p>
-               <p>我的博客上还使用了许多a标签，我懒得换成click跳转，所以使用css解决问题，如下：</p>
+               <p>我解决此问题的js源代码：<a href="https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/js/index.js">https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/js/index.js</a></p>
+               <p>我还使用了许多a标签，懒得换成click跳转，所以使用css解决问题，如下：</p>
                <pre><code>a {
    -webkit-user-select: none;
    -webkit-tap-highlight-color: rgba(200,200,200,0);
 }
                </code></pre>
                <p>这样处理后，点击a标签就不会发生背景闪烁了。</p>
-               <p>我的博客中解决此问题的css源代码：<a href="https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/css/index.css">https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/css/index.css</a></p>
+               <p>我解决此问题的css源代码：<a href="https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/css/index.css">https://github.com/tgwuyangyang/tgwuyangyang.github.com/blob/master/css/index.css</a></p>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">
