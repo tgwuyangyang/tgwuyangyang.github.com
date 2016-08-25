@@ -19,7 +19,7 @@
    color: red;
 }
 
-#main_content h3 a {
+a {
    -webkit-user-select: none;
    -webkit-tap-highlight-color: rgba(200,200,200,0);
 }
