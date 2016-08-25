@@ -61,7 +61,7 @@ var initName = function() {
 }
 
 // 选择分类
-$(".catalog").delegate("span", "tap",  function() {
+$(".catalog").delegate("span", "tap", function() {
    var $this = $(this);
    type = $this.attr("type");
    $this.addClass("color").siblings().removeClass("color");
