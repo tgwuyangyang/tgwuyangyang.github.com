@@ -11,9 +11,9 @@ var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转
                   {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"}
                   ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
-var mui = [];
+var mui = [{"id": "1", "name": "mui使用小技巧", "url": "html/mui/notes.html", "time": "2016-08-26"}];
 var css = [{"id": "1", "name": "box-sizing", "url": "html/css/box_sizing.html", "time": "2016-08-20"},
-           {"id": "1", "name": "ios微信上点击元素背景会闪烁一下", "url": "html/css/background_flicker.html", "time": "2016-08-25"}
+           {"id": "2", "name": "ios微信上点击元素背景会闪烁一下", "url": "html/css/background_flicker.html", "time": "2016-08-25"}
           ];
 var type = "java";
 
@@ -44,6 +44,9 @@ var initName = function() {
    }
    else if(type == "css") {
       content = css;
+   }
+   else if(type == "mui") {
+      content = mui;
    }
 
    for(var i = 0; i < content.length; i++) {
