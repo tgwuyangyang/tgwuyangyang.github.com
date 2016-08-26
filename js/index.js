@@ -72,6 +72,14 @@ $(".catalog").delegate("span", "tap", function() {
    initName();
 });
 
+// 测试
+$("#test").on("tap", function() {
+   mui.openWindow({
+      url: "../html/github/command.html",
+      id: "command"
+   });
+});
+
 $(document).ready(function() {
    initName();
    initTitle();
