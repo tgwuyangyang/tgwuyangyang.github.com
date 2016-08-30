@@ -5,7 +5,8 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "5", "name": "css"}
            ];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"},
-            {"id": "2", "name": "阿里云服务器均衡负载SLB", "url": "html/java/aliyun_slb.html", "time": "2016-08-18"}
+            {"id": "2", "name": "阿里云服务器均衡负载SLB", "url": "html/java/aliyun_slb.html", "time": "2016-08-18"},
+            {"id": "3", "name": "nginx for linux安装", "url": "html/java/nginx_install.html", "time": "2016-08-30"}
             ];
 var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-08-02"},
                   {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"}
