@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+      <meta name="description" content="tgwuyangyang.github.io是一个个人博客，不定时发表一些技术文章">
+      <meta name="keywords" content="吴杨杨,个人博客,nginx for windows,nginx,搭建负载均衡集群">
+      <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
+      <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/github-dark.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
+      <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <title>吴杨杨的个人博客</title>
+   </head>
+
+   <body>
+      <div id="container">
+         <div class="inner">
+            <header>
+               <h1>Tgwuyangyang.GitHub.com</h1>
+               <h2></h2>
+            </header>
+            <hr>
+            <p class="title"><span>windows环境下搭建nginx实现负载均衡<span></p>
+            <hr>
+            <section id="main_content">
+               <p class="author">
+                  <span>作者：吴杨杨</span>
+                  <a class="back" href="../../index.html">返回首页</a>
+               </p>
+               <p class="time"><span>时间：2016-09-02</span></p>
+               <p>本篇文章讲解在windows环境下利用nginx+tomcat搭建负载均衡集群</p>
+               <p>1、安装tomcat</p>
+               <p>首先，配置JDK环境，在此不做讲解，请自行google</p>
+               <p>下载tomcat，我用的是绿色版免安装的tomcat，下载地址：https://yunpan.cn/cMtZv73J2N5qV  访问密码 d4c3</p>
+               <p>解压，然后再复制一份，其中一个tomcat文件夹名为tm1，另一个名为tm2，名字随意，在此是为了区分两个tomcat</p>
+               <p>打开tm1/conf/下的server.xml文件，修改其中的配置：</p>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;connectionTimeout=&quot;20000&quot;redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <p>改为</p>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Server port=&quot;9005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;8089&quot; protocol=&quot;HTTP/1.1&quot;connectionTimeout=&quot;20000&quot;redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;9009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <p>tm2/conf/下的server.xml文件，修改其配置为：</p>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Server port=&quot;9004&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;8088&quot; protocol=&quot;HTTP/1.1&quot;connectionTimeout=&quot;20000&quot;redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <blockquote>
+                  <ul>
+                     <li>&lt;Connector port=&quot;9008&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</li>
+                  </ul>
+               </blockquote>
+               <p>这里的port不是固定的，根据自己电脑上的端口占用情况，可以自行更改</p>
+               <p>打开tm1/bin文件夹，运行startup.bat</p>
+               <p>打开tm2/bin文件夹，运行startup.bat</p>
+               <p>如果出错，可能是JAVA_HOME环境变量或者端口被占用，请自行google解决</p>
+               <p>如果没有出错，打开浏览器，输入以下url</p>
+               <blockquote>
+                  <ul>
+                     <li>http://127.0.0.1:8088</li>
+                     <li>http://127.0.0.1:8089</li>
+                  </ul>
+               </blockquote>
+               <p>看见了熟悉的tomcat页面，则证明tomcat服务已配好。</p>
+               <p>打开tm1/webapps文件夹，新建一个名称为test的文件夹，文件夹中新建一个index.html文件，index.html中内容如下：</p>
+               <pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;title&gt;test1&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;br&gt;
+      &lt;hr&gt;
+      &lt;h3 style=&quot;text-align: center; color: blue;&quot;&gt;This is 8088&lt;/h3&gt;
+      &lt;hr&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+               </code></pre>
+               <p>打开tm2/webapps文件夹，新建一个名称为test的文件夹，文件夹中新建一个index.html文件，index.html中内容如下：</p>
+               <pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html lang=&quot;en&quot;&gt;
+   &lt;head&gt;
+      &lt;meta charset=&quot;UTF-8&quot;&gt;
+      &lt;title&gt;test1&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;br&gt;
+      &lt;hr&gt;
+      &lt;h3 style=&quot;text-align: center; color: blue;&quot;&gt;This is 8089&lt;/h3&gt;
+      &lt;hr&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+               </code></pre>
+               <p>打开浏览器，输入以下url</p>
+               <blockquote>
+                  <ul>
+                     <li>http://127.0.0.1:8088/test</li>
+                     <li>http://127.0.0.1:8089/test</li>
+                  </ul>
+               </blockquote>
+               <p>会出现如下页面</p>
+               <img src="../../images/test1.png" />
+               <img src="../../images/test2.png" />
+               <p>2、安装nginx</p>
+               <p>下载地址：http://nginx.net ，下载后解压</p>
+               <p>打开conf/下的nginx.conf文件，修改其中的配置，简单配置如下：</p>
+               <pre><code>worker_processes  1;
+events {
+   worker_connections  1024;
+}
+
+http {
+   include       mime.types;
+   default_type  application/octet-stream;
+   log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+   sendfile        on;
+   keepalive_timeout  65;
+
+   #&#35774;&#23450;&#36127;&#36733;&#22343;&#34913;&#30340;&#26381;&#21153;&#22120;&#21015;&#34920;
+   upstream myserver {
+      #weigth&#21442;&#25968;&#34920;&#31034;&#26435;&#20540;&#65292;&#26435;&#20540;&#36234;&#39640;&#34987;&#20998;&#37197;&#21040;&#30340;&#20960;&#29575;&#36234;&#22823;
+      server 127.0.0.1:8088 weight=4;
+      server 127.0.0.1:8089 weight=5;
+   }
+
+   server {
+      listen       80 default_server;
+      server_name  localhost;
+      index index.html;
+
+      location / {
+         proxy_pass http://myserver;
+      }
+
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+         root   html;
+      }
+   }
+}
+               </code></pre>
+               <p>配置好后，运行nginx.exe</p>
+               <p>打开浏览器，输入以下url</p>
+               <blockquote>
+                  <ul>
+                     <li>http://127.0.0.1:8080/test</li>
+                  </ul>
+               </blockquote>
+               <p>然后按F5刷新，你会看到，你想要的页面是8088和8089服务器提供给你的</p>
+               <p>到此，一个简单的负载均衡集群搭建成功。</p>
+               <p>以上。</p>
+               <hr>
+               <section id="downloads" class="clearfix">
+               <a href="../../index.html">返回首页</a>
+               <a style="float:right;" href="https://github.com/tgwuyangyang" id="view-on-github" class="button">
+                  <span>View on GitHub</span>
+               </a>
+            </section>
+            </section>
+            <footer>
+               <table class="border-none">
+                  <tr>
+                     <td class="border-none">
+                        This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+                     </td>
+                  </tr>
+               </table>
+            </footer>
+         </div>
+      </div>
+      <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+   </body>
+</html>
