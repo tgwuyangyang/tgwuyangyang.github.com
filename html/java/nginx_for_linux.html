@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+      <meta name="description" content="tgwuyangyang.github.io是一个个人博客，不定时发表一些技术文章">
+      <meta name="keywords" content="吴杨杨,个人博客,nginx for linux,nginx,搭建负载均衡集群">
+      <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
+      <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/github-dark.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
+      <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <title>吴杨杨的个人博客</title>
+   </head>
+
+   <body>
+      <div id="container">
+         <div class="inner">
+            <header>
+               <h1>Tgwuyangyang.GitHub.com</h1>
+               <h2></h2>
+            </header>
+            <hr>
+            <p class="title"><span>Linux环境下搭建nginx实现负载均衡<span></p>
+            <hr>
+            <section id="main_content">
+               <p class="author">
+                  <span>作者：吴杨杨</span>
+                  <a class="back" href="../../index.html">返回首页</a>
+               </p>
+               <p class="time"><span>时间：2016-09-03</span></p>
+               <p>上篇文章讲了windows平台负载均衡集群的搭建，本篇文章讲解一下在Linux环境下利用nginx+tomcat搭建负载均衡集群</p>
+               <p>1、安装tomcat</p>
+               <p>首先，配置JDK环境，在此不做讲解，请自行google</p>
+               <p>下载tomcat，官网地址：http://tomcat.apache.org/ 随自己的偏好，自己选择版本</p>
+               <img src="../../images/tomcat_download_link.jpg" />
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ root]# wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz</li>
+                  </ul>
+               </blockquote>
+               <p>解压</p>
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ root]# tar -zxvf /root/apache-tomcat-8.5.4.tar.gz</li>
+                  </ul>
+               </blockquote>
+               <p>好了，到此，tomcat就可以用了。</p>
+               <p>既然是集群，那就再复制一台tomcat</p>
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ root]# cp -r apache-tomcat-6.0.18 apache-tomcat-6.0.18_new</li>
+                  </ul>
+               </blockquote>
+               <p>然后配置两个tomcat的server.xml文件，以及webapps文件夹下添加test项目。具体操作和我上一篇文章类似，请查看--<a href="../java/nginx_for_windows.html">windows环境下搭建nginx实现负载均衡</a>,或者，自行google</p>
+               <p>两台tomcact服务分别为8088和8089，启动两台tomcat服务：</p>
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ bin]# ./startup.sh</li>
+                  </ul>
+               </blockquote>
+               <p>如果想停止tomcat服务，如下：</p>
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ bin]# ./shutdown.sh</li>
+                  </ul>
+               </blockquote>
+               <p>1、安装nginx</p>
+               <p>具体操作请查看我的另一篇文章--<a href="../java/nginx_install.html">nginx for linux安装</a></p>
+               <p>配置nginx.conf文件，在conf目录下，我的配置如下：</p>
+               <pre><code>user  root;
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    #gzip  on;
+     #&#35774;&#23450;&#36127;&#36733;&#22343;&#34913;&#30340;&#26381;&#21153;&#22120;&#21015;&#34920;
+     upstream myserver {
+       #weigth&#21442;&#25968;&#34920;&#31034;&#26435;&#20540;&#65292;&#26435;&#20540;&#36234;&#39640;&#34987;&#20998;&#37197;&#21040;&#30340;&#20960;&#29575;&#36234;&#22823;
+       server 127.0.0.1:8088 weight=5;
+       server 127.0.0.1:8089 weight=5;
+    }
+
+    server {
+        listen       51500;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            proxy_pass http://myserver;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+
+}
+               </code></pre>
+               <p>启动nginx</p>
+               <blockquote>
+                  <ul>
+                     <li>/root/nginx-1.6.2/sbin/nginx</li>
+                  </ul>
+               </blockquote>
+               <p>输入以下url测试：</p>
+               <blockquote>
+                  <ul>
+                     <li>http://xxx.x.x.x:51500/test</li>
+                  </ul>
+               </blockquote>
+               <p>然后按F5刷新，你会看到，你想要的页面是8088和8089服务器提供给你的</p>
+               <p>nginx其他常用命令：</p>
+               <p>强制停止 nginx服务</p>
+               <blockquote>
+                  <ul>
+                     <li>pkill -9 nginx</li>
+                  </ul>
+               </blockquote>
+               <p>查看 nginx服务</p>
+               <blockquote>
+                  <ul>
+                     <li>ps -ef | grep nginx</li>
+                  </ul>
+               </blockquote>
+               <p>强制停止 nginx服务</p>
+               <blockquote>
+                  <ul>
+                     <li>pkill -9 nginx</li>
+                  </ul>
+               </blockquote>
+               <p>检查nginx.conf文件配置语法</p>
+               <blockquote>
+                  <ul>
+                     <li>/root/nginx-1.6.2/sbin/nginx -t</li>
+                  </ul>
+               </blockquote>
+               <p>查看51500端口</p>
+               <blockquote>
+                  <ul>
+                     <li>netstat -apn | grep 51500</li>
+                  </ul>
+               </blockquote>
+               <p>以上。</p>
+               <hr>
+               <section id="downloads" class="clearfix">
+               <a href="../../index.html">返回首页</a>
+               <a style="float:right;" href="https://github.com/tgwuyangyang" id="view-on-github" class="button">
+                  <span>View on GitHub</span>
+               </a>
+            </section>
+            </section>
+            <footer>
+               <table class="border-none">
+                  <tr>
+                     <td class="border-none">
+                        This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+                     </td>
+                  </tr>
+               </table>
+            </footer>
+         </div>
+      </div>
+      <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+   </body>
+</html>
