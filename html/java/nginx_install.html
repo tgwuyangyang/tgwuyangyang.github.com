@@ -117,6 +117,31 @@
                      <li>[root@iZ942eskcwaZ root]# tar -zxvf openssl-1.0.1t.tar.gz</li>
                   </ul>
                </blockquote>
+               <p>启动nginx</p>
+               <blockquote>
+                  <ul>
+                     <li>[root@iZ942eskcwaZ nginx-1.6.2]# /root/nginx-1.6.2/sbin/nginx</li>
+                  </ul>
+               </blockquote>
+               <p>如果报以下错误</p>
+               <img src="../../images/nginx_install_error.jpg" />
+               <p>在/root/nginx-1.6.2目录下新建一个logs目录，然后再次启动就ok了</p>
+               <p>打开浏览器，输入以下url</p>
+               <blockquote>
+                  <ul>
+                     <li>http://xxx.xxx.x.x:8080     // 8080为端口号，请根据自己端口号配置情况输入url</li>
+                  </ul>
+               </blockquote>
+               <p>出现以下页面就表示nginx搭建好了</p>
+               <img src="../../images/nginx_install_success.jpg" />
+               <p>如果出现以下错误</p>
+               <img src="../../images/nginx_install_403.jpg" />
+               <p>修改/root/nginx-1.6.2/conf目录下的nginx.conf文件，增加一句</p>
+               <blockquote>
+                  <ul>
+                     <li>user  root;</li>
+                  </ul>
+               </blockquote>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">
