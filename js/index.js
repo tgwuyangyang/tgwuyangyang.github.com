@@ -2,14 +2,10 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "2", "name": "javaScript"}, 
             {"id": "3", "name": "github"}, 
             {"id": "4", "name": "mui"},
-            {"id": "5", "name": "css"}
+            {"id": "5", "name": "css"},
+            {"id": "6", "name": "nginx"}
            ];
-var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"},
-            {"id": "2", "name": "阿里云服务器均衡负载SLB", "url": "html/java/aliyun_slb.html", "time": "2016-08-18"},
-            {"id": "3", "name": "nginx for linux安装", "url": "html/java/nginx_install.html", "time": "2016-08-30"},
-            {"id": "4", "name": "windows环境下搭建nginx实现负载均衡", "url": "html/java/nginx_for_windows.html", "time": "2016-09-02"},
-            {"id": "5", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/java/nginx_for_linux.html", "time": "2016-09-03"}
-            ];
+var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-08-02"},
                   {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"}
                   ];
@@ -19,6 +15,11 @@ var css = [{"id": "1", "name": "box-sizing", "url": "html/css/box_sizing.html", 
            {"id": "2", "name": "ios微信上点击元素背景会闪烁一下", "url": "html/css/background_flicker.html", "time": "2016-08-25"},
            {"id": "3", "name": "HTML中tr标签设置边框不显示", "url": "html/css/border-collapse.html", "time": "2016-09-01"}
           ];
+var nginx = [{"id": "1", "name": "阿里云服务器均衡负载SLB", "url": "html/nginx/aliyun_slb.html", "time": "2016-08-18"},
+            {"id": "2", "name": "nginx for linux安装", "url": "html/nginx/nginx_install.html", "time": "2016-08-30"},
+            {"id": "3", "name": "windows环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_windows.html", "time": "2016-09-02"},
+            {"id": "4", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_linux.html", "time": "2016-09-03"}
+            ];
 var type = "java";
 
 // 初始化title
@@ -51,6 +52,9 @@ var initName = function() {
    }
    else if(type == "mui") {
       content = mui;
+   }
+   else if(type == "nginx") {
+      content = nginx;
    }
 
    for(var i = 0; i < content.length; i++) {
