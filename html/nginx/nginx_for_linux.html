@@ -54,7 +54,7 @@
                      <li>[root@iZ942eskcwaZ root]# cp -r apache-tomcat-6.0.18 apache-tomcat-6.0.18_new</li>
                   </ul>
                </blockquote>
-               <p>然后配置两个tomcat的server.xml文件，以及webapps文件夹下添加test项目。具体操作和我上一篇文章类似，请查看--<a href="../java/nginx_for_windows.html">windows环境下搭建nginx实现负载均衡</a>,或者，自行google</p>
+               <p>然后配置两个tomcat的server.xml文件，以及webapps文件夹下添加test项目。具体操作和我上一篇文章类似，请查看--<a href="../nginx/nginx_for_windows.html">windows环境下搭建nginx实现负载均衡</a>,或者，自行google</p>
                <p>两台tomcat服务分别为8088和8089，启动两台tomcat服务：</p>
                <blockquote>
                   <ul>
@@ -68,7 +68,7 @@
                   </ul>
                </blockquote>
                <p>1、安装nginx</p>
-               <p>具体操作请查看我的另一篇文章--<a href="../java/nginx_install.html">nginx for linux安装</a></p>
+               <p>具体操作请查看我的另一篇文章--<a href="../nginx/nginx_install.html">nginx for linux安装</a></p>
                <p>配置nginx.conf文件，在conf目录下，我的配置如下：</p>
                <pre><code>user  root;
 worker_processes  1;
