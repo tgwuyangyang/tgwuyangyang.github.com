@@ -7,7 +7,8 @@ var menu = [{"id": "1", "name": "java"},
            ];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
 var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-08-02"},
-                  {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"}
+                  {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"},
+                  {"id": "2", "name": "angularjs学习笔记--SPA单页面应用页面跳转类似于微信的动画效果", "url": "html/javaScript/skip_cartoon.html", "time": "2016-09-21"}
                   ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [{"id": "1", "name": "mui使用小技巧", "url": "html/mui/notes.html", "time": "2016-08-26"}];
