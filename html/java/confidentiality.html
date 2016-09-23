@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+      <meta name="description" content="word、excel、pdf文件的加密与解密">
+      <meta name="keywords" content="吴杨杨,个人博客,word、excel、pdf文件的加密与解密">
+      <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
+      <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/github-dark.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
+      <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <title>吴杨杨的个人博客</title>
+   </head>
+
+   <body>
+      <div id="container">
+         <div class="inner">
+            <header>
+               <h1>Tgwuyangyang.GitHub.com</h1>
+               <h2></h2>
+            </header>
+            <hr>
+            <p class="title"><span>word、excel、pdf文件的加密与解密<span></p>
+            <hr>
+            <section id="main_content">
+               <p class="author">
+                  <span>作者：吴杨杨</span>
+                  <a class="back" href="../../index.html">返回首页</a>
+               </p>
+               <p class="time"><span>时间：2016-09-23</span></p>
+               <p>因为一些项目上的文件对客户来说很重要，所以对客户的文件采取加密是一个不错的办法。</p>
+               <p>本篇文章就介绍一种简单的方法，实现对文件的加密与解密。</p>
+               <p>原理很简单，就是以字节流的方式读取文件前512个字节，然后按照一定的规则打乱。需要打开时，将文件的前512个字节按规则还原回去。这样，项目以外的方式打开文件都是乱码。</p>
+               <p>有一点需要注意，pws和office不一样，pws建的文件需要前7168个字节打乱顺序才可行。作者当时跳入这个坑里真是欲仙欲死，说多了都是泪，还是看代码吧。</p>
+               <p>加密的代码：</p>
+               <pre><code>package github.tgwuyangyang.demo;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+/**
+ * &#21152;&#23494;
+ * @author tgwuyangyang
+ *
+ */
+
+public class decode {
+   private static final int CHANGE_COUNT = 512;
+
+   public static void main(String[] args) throws IOException {
+      String path = &quot;E:\\test.doc&quot;;
+      String opath = &quot;E:\\test2\\test2.doc&quot;; // &#21152;&#23494;&#21518;&#30340;&#25991;&#20214;
+
+      // &#24471;&#21040;&#21069;512&#20010;&#23383;&#33410;
+      byte[] oldBuffer = new byte[CHANGE_COUNT];
+      FileInputStream input = new FileInputStream(path);
+      input.read(oldBuffer, 0, oldBuffer.length);
+
+      // &#39072;&#20498;&#39034;&#24207;
+      byte[] newBuffer = new byte[CHANGE_COUNT];
+
+      for (int i = 0; i &lt; oldBuffer.length - 1; i++) {
+         newBuffer[i] = oldBuffer[i + 1];
+      }
+
+      newBuffer[newBuffer.length - 1] = oldBuffer[0];
+
+      input.close();
+
+      // &#26367;&#25442;&#25991;&#20214;&#30340;&#21069;512&#20010;&#23383;&#33410;
+      byte[] bt = getContent(path);
+
+      for (int i = 0; i &lt; newBuffer.length; i++) {
+         bt[i] = newBuffer[i];
+      }
+
+      FileOutputStream fout = new FileOutputStream(opath);
+
+      fout.write(bt);
+      fout.flush();
+      fout.close();
+   }
+
+   // &#24471;&#21040;&#25991;&#20214;&#25152;&#26377;&#23383;&#33410;
+   public static byte[] getContent(String filePath) throws IOException {
+      File file = new File(filePath);
+      long fileSize = file.length();
+
+      if (fileSize &gt; Integer.MAX_VALUE) {
+         System.out.println(&quot;&#25991;&#20214;&#22826;&#22823;...&quot;);
+          return null;
+      }
+
+      FileInputStream fi = new FileInputStream(file);
+      byte[] buffer = new byte[(int) fileSize];
+      int offset = 0;
+      int numRead = 0;
+
+      while (offset &lt; buffer.length
+         &amp;&amp; (numRead = fi.read(buffer, offset, buffer.length - offset)) &gt;= 0)
+      {
+         offset += numRead;
+      }
+
+      // &#30830;&#20445;&#25152;&#26377;&#25152;&#26377;&#25968;&#25454;&#22343;&#34987;&#35835;&#21462;
+      if (offset != buffer.length) {
+         throw new IOException(&quot;&#26410;&#35835;&#21462;&#23436;... &quot; + file.getName());
+      }
+      fi.close();
+
+      return buffer;
+   }
+}
+               </code></pre>
+               <p>解密的代码：</p>
+               <pre><code>package github.tgwuyangyang.demo;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+/**
+ * &#35299;&#23494;
+ * @author tgwuyangyang
+ *
+ */
+public class encryption {
+   private static final int CHANGE_COUNT = 512;
+
+   public static void main(String[] args) throws IOException {
+      String path = &quot;E:\\test2\\test2.doc&quot;;
+      String opath = &quot;E:\\test3\\test3.doc&quot;; // &#35299;&#23494;&#21518;&#30340;&#25991;&#20214;
+
+      // &#24471;&#21040;&#21069;512&#20010;&#23383;&#33410;
+      byte[] oldBuffer = new byte[CHANGE_COUNT];
+      FileInputStream input = new FileInputStream(path);
+      input.read(oldBuffer, 0, oldBuffer.length);
+
+      // &#39072;&#20498;&#39034;&#24207;
+      byte[] newBuffer = new byte[CHANGE_COUNT];
+      newBuffer[0] = oldBuffer[oldBuffer.length - 1];
+
+      for (int i = oldBuffer.length - 1; i &gt; 0; i--) {
+         newBuffer[i] = oldBuffer[i - 1];
+      }
+
+      input.close();
+
+      // &#26367;&#25442;&#25991;&#20214;&#30340;&#21069;512&#20010;&#23383;&#33410;
+      byte[] bt = getContent(path);
+
+      for (int i = 0; i &lt; newBuffer.length; i++) {
+         bt[i] = newBuffer[i];
+      }
+
+      FileOutputStream fout = new FileOutputStream(opath);
+
+      fout.write(bt);
+      fout.flush();
+      fout.close();
+   }
+
+   // &#24471;&#21040;&#25991;&#20214;&#25152;&#26377;&#23383;&#33410;
+   public static byte[] getContent(String filePath) throws IOException {
+      File file = new File(filePath);
+      long fileSize = file.length();
+
+      if (fileSize &gt; Integer.MAX_VALUE) {
+         System.out.println(&quot;&#25991;&#20214;&#22826;&#22823;...&quot;);
+         return null;
+      }
+
+      FileInputStream fi = new FileInputStream(file);
+      byte[] buffer = new byte[(int) fileSize];
+      int offset = 0;
+      int numRead = 0;
+
+      while (offset &lt; buffer.length
+         &amp;&amp; (numRead = fi.read(buffer, offset, buffer.length - offset)) &gt;= 0)
+      {
+         offset += numRead;
+      }
+
+      // &#30830;&#20445;&#25152;&#26377;&#25968;&#25454;&#37117;&#34987;&#35835;&#21462;
+      if (offset != buffer.length) {
+         throw new IOException(&quot;&#26410;&#35835;&#21462;&#23436;... &quot; + file.getName());
+      }
+      fi.close();
+
+      return buffer;
+   }
+}
+               </code></pre>
+               <p>源代码github地址：<a target="_blank" href="https://github.com/tgwuyangyang/Confidentiality">https://github.com/tgwuyangyang/Confidentiality</a></p>
+               <p>以上。</p>
+               <hr>
+               <section id="downloads" class="clearfix">
+               <a href="../../index.html">返回首页</a>
+               <a style="float:right;" href="https://github.com/tgwuyangyang" id="view-on-github" class="button">
+                  <span>View on GitHub</span>
+               </a>
+            </section>
+            </section>
+            <footer>
+               <table class="border-none">
+                  <tr>
+                     <td class="border-none">
+                        This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+                     </td>
+                  </tr>
+               </table>
+            </footer>
+         </div>
+      </div>
+      <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+   </body>
+</html>

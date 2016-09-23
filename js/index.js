@@ -5,7 +5,9 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "5", "name": "css"},
             {"id": "6", "name": "nginx"}
            ];
-var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"}];
+var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"},
+            {"id": "1", "name": "word、excel、pdf文件的加密与解密", "url": "html/java/confidentiality.html", "time": "2016-09-23"}
+           ];
 var javaScript = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转换NaN问题", "url": "html/javaScript/date-format.html", "time": "2016-08-02"},
                   {"id": "2", "name": "angularjs学习笔记--js实现打电话", "url": "html/javaScript/phone.html", "time": "2016-08-03"},
                   {"id": "2", "name": "angularjs学习笔记--SPA单页面应用页面跳转类似于微信的动画效果", "url": "html/javaScript/skip_cartoon.html", "time": "2016-09-21"}
