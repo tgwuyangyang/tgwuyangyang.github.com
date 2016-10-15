@@ -21,7 +21,8 @@ var css = [{"id": "1", "name": "box-sizing", "url": "html/css/box_sizing.html", 
 var nginx = [{"id": "1", "name": "阿里云服务器均衡负载SLB", "url": "html/nginx/aliyun_slb.html", "time": "2016-08-18"},
             {"id": "2", "name": "nginx for linux安装", "url": "html/nginx/nginx_install.html", "time": "2016-08-30"},
             {"id": "3", "name": "windows环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_windows.html", "time": "2016-09-02"},
-            {"id": "4", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_linux.html", "time": "2016-09-03"}
+            {"id": "4", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_linux.html", "time": "2016-09-03"},
+            {"id": "5", "name": "session共享", "url": "html/nginx/nginx_session.html", "time": "2016-10-15"}
             ];
 var type = "java";
 
