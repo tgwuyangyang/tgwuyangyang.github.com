@@ -3,7 +3,8 @@ var menu = [{"id": "1", "name": "java"},
             {"id": "3", "name": "github"}, 
             {"id": "4", "name": "mui"},
             {"id": "5", "name": "css"},
-            {"id": "6", "name": "nginx"}
+            {"id": "6", "name": "nginx"},
+            {"id": "7", "name": "other"}
            ];
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"},
             {"id": "2", "name": "word、excel、pdf文件的加密与解密", "url": "html/java/confidentiality.html", "time": "2016-09-23"}
@@ -24,6 +25,7 @@ var nginx = [{"id": "1", "name": "阿里云服务器均衡负载SLB", "url": "ht
             {"id": "4", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_linux.html", "time": "2016-09-03"},
             {"id": "5", "name": "session共享", "url": "html/nginx/nginx_session.html", "time": "2016-10-15"}
             ];
+var other = [{"id": "1", "name": "微信小程序的优点与缺点", "url": "html/other/small_routine.html", "time": "2016-11-22"}];
 var type = "java";
 
 // 初始化title
@@ -59,6 +61,9 @@ var initName = function() {
    }
    else if(type == "nginx") {
       content = nginx;
+   }
+   else if(type == "other") {
+      content = other;
    }
 
    for(var i = 0; i < content.length; i++) {
