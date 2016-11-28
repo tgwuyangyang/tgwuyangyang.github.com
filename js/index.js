@@ -25,7 +25,8 @@ var nginx = [{"id": "1", "name": "阿里云服务器均衡负载SLB", "url": "ht
             {"id": "4", "name": "Linux环境下搭建nginx实现负载均衡", "url": "html/nginx/nginx_for_linux.html", "time": "2016-09-03"},
             {"id": "5", "name": "session共享", "url": "html/nginx/nginx_session.html", "time": "2016-10-15"}
             ];
-var other = [{"id": "1", "name": "微信小程序的优点与缺点", "url": "html/other/small_routine.html", "time": "2016-11-22"}];
+var other = [{"id": "1", "name": "微信小程序的优点与缺点", "url": "html/other/small_routine.html", "time": "2016-11-22"},
+            {"id": "2", "name": "解决微信浏览器缓存页面问题", "url": "html/other/wechat_cache.html", "time": "2016-11-28"}];
 var type = "java";
 
 // 初始化title
