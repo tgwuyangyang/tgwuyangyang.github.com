@@ -15,7 +15,8 @@ var AngularJS = [{"id": "1", "name": "angularjs学习笔记--iphone上时间转�
                  {"id": "4", "name": "angularjs学习笔记--directive封装mui时间控件", "url": "html/AngularJS/btn_date.html", "time": "2016-12-07"}
                 ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
-var mui = [{"id": "1", "name": "mui使用小技巧", "url": "html/mui/notes.html", "time": "2016-08-26"}];
+var mui = [{"id": "1", "name": "mui使用小技巧", "url": "html/mui/notes.html", "time": "2016-08-26"},
+           {"id": "2", "name": "mui与angularjs实现轮播刷新数据", "url": "html/mui/carousel.html", "time": "2016-01-11"}];
 var css = [{"id": "1", "name": "box-sizing", "url": "html/css/box_sizing.html", "time": "2016-08-20"},
            {"id": "2", "name": "ios微信上点击元素背景会闪烁一下", "url": "html/css/background_flicker.html", "time": "2016-08-25"},
            {"id": "3", "name": "HTML中tr标签设置边框不显示", "url": "html/css/border-collapse.html", "time": "2016-09-01"}
