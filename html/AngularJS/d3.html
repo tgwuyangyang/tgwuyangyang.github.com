@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+      <meta name="description" content="directive">
+      <meta name="keywords" content="吴杨杨,个人博客,directive封装d3.js,angularjs,tgwuyangyang.github.io">
+      <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
+      <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/github-dark.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="../../css/print.css" media="print">
+      <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <title>吴杨杨的个人博客</title>
+   </head>
+
+   <body>
+      <div id="container">
+         <div class="inner">
+            <header>
+               <h1>Tgwuyangyang.GitHub.com</h1>
+            </header>
+            <hr>
+            <p class="title"><span>angularjs学习笔记--directive封装d3.js</span></p>
+            <hr>
+            <section id="main_content">
+               <p class="author">
+                  <span>作者：吴杨杨</span>
+                  <a class="back" href="../../index.html">返回首页</a>
+               </p>
+               <p class="time"><span>时间：2017-01-14</span></p>
+               <p>关于大数据的展示，或者报表，可以用d3.js实现，在angularjs框架中，就需要使用directive指令封装了。下面给一个例子：</p>
+               <pre><code>angular.module('app')
+.directive('testDirective', ['$location', '$window', function($location, $window) {
+   return {
+      restrict: 'E',
+      replace: true,
+      template: '&lt;div class=&quot;test&quot;&gt;&lt;div class=&quot;test-img&quot;&gt;&lt;/div&gt;&lt;/div&gt;',
+      link: function(scope, elem, attrs) {
+         scope.$watch(&quot;testData&quot;, function() {
+            refresh();
+         }, true);
+
+         function refresh() {
+            var data = scope.testData ? scope.testData : [];
+            d3.selectAll(&quot;.test-img&quot;).selectAll(&quot;svg&quot;).remove();
+            var screenWidth = (window.innerWidth &gt; 0) ? window.innerWidth : screen.width;
+
+            var m = [10, 20, 20, 100],
+               w = screenWidth - m[1] - m[3],
+               h = data.length * 30 - m[0] - m[2];
+
+            var format = d3.format(&quot;,.0f&quot;);
+
+            var x = d3.scale.linear().range([0, w]),
+               y = d3.scale.ordinal().rangeRoundBands([h, 0], .1);
+
+            var xAxis = d3.svg.axis().scale(x).orient(&quot;top&quot;).tickSize(m[0]),
+               yAxis = d3.svg.axis().scale(y).orient(&quot;left&quot;).tickSize(0);
+
+            var svg = d3.selectAll(&quot;.attendance-statistics-svg-img&quot;).append(&quot;svg&quot;)
+               .attr(&quot;width&quot;, w + m[1] + m[3])
+               .attr(&quot;height&quot;, h + m[0] + m[2])
+               .append(&quot;g&quot;)
+               .attr(&quot;transform&quot;, &quot;translate(&quot; + m[3] + &quot;,&quot; + m[0] + &quot;)&quot;);
+
+            data.forEach(function(d) {
+               d.value = +d.value;
+            });
+            data.sort(function(a, b) {
+               return b.value - a.value;
+            });
+
+            x.domain([0, d3.max(data, function(d) {
+               return d.value;
+            })]);
+
+            y.domain(data.map(function(d) {
+               return d.name;
+            }));
+
+            var bar = svg.selectAll(&quot;g&quot;)
+               .data(data)
+               .enter().append(&quot;g&quot;)
+               .attr(&quot;class&quot;, &quot;bar&quot;)
+               .attr(&quot;transform&quot;, function(d) {
+                  return &quot;translate(0,&quot; + y(d.name) + &quot;)&quot;;
+               });
+
+            bar.append(&quot;rect&quot;)
+               .attr(&quot;width&quot;, function(d) {
+                  return x(d.value);
+               })
+               .attr(&quot;height&quot;, 5)
+               .attr(&quot;y&quot;, y.rangeBand() / 4)
+               .attr(&quot;rx&quot;, 0)
+               .attr(&quot;ry&quot;, 5);
+
+            bar.append(&quot;text&quot;)
+               .attr(&quot;class&quot;, &quot;value&quot;)
+               .attr(&quot;x&quot;, function(d) {
+                  return x(d.value);
+               });
+
+            svg.append(&quot;g&quot;)
+               .attr(&quot;class&quot;, &quot;x axis&quot;)
+               .attr(&quot;transform&quot;, &quot;translate(&quot; + 0 + &quot;,&quot; + (h + m[0] + m[2]) + &quot;)&quot;)
+               .call(xAxis);
+
+            svg.append(&quot;g&quot;)
+               .attr(&quot;class&quot;, &quot;y axis&quot;)
+               .call(yAxis);
+         }
+      }
+   };
+}]);
+               </code></pre>
+               <p>其中<code>$watch</code>方法会监听值testData，如果testData发生变化，就会触发refresh()方法，refresh()方法的作用就是刷新svg：</p>
+               <pre><code>scope.$watch(&quot;testData&quot;, function() {
+   refresh();
+}, true);
+               </code></pre>
+               <p>画svg之前先删除旧的svg：</p>
+               <pre><code>d3.selectAll(&quot;.test-img&quot;).selectAll(&quot;svg&quot;).remove();
+               </code></pre>
+               <p>由于要兼容各种手机型号，所以动态获取屏幕的宽度：</p>
+               <pre><code>var screenWidth = (window.innerWidth &gt; 0) ? window.innerWidth : screen.width;
+               </code></pre>
+               <p>使用时，只需在html中加上如下标签：</p>
+               <pre><code>&lt;test-directive&gt;&lt;/test-directive&gt;
+               </code></pre>
+               <p>对应的controller中给testData赋值.</p>
+               <p>directive中的<code>scope.testData</code>就相当于controller中的<code>$scope.testData</code>.</p>
+               <p>更多d3示例，<a target="_blank" href="https://github.com/d3/d3">点此</a></p>
+               <p>以上。</p>
+               <hr>
+               <section id="downloads" class="clearfix">
+               <a href="../../index.html">返回首页</a>
+               <a style="float:right;" href="https://github.com/tgwuyangyang" id="view-on-github" class="button">
+                  <span>View on GitHub</span>
+               </a>
+            </section>
+            </section>
+            <footer>
+               <table class="border-none">
+                  <tr>
+                     <td class="border-none">
+                        This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+                     </td>
+                  </tr>
+               </table>
+            </footer>
+         </div>
+      </div>
+      <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+   </body>
+</html>
