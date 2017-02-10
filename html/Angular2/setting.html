@@ -4,8 +4,8 @@
       <meta charset='utf-8'>
       <meta http-equiv="X-UA-Compatible" content="chrome=1">
       <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-      <meta name="description" content="iphone上时间转换NaN问题,Safari下转换时间，需要这种格式.">
-      <meta name="keywords" content="吴杨杨,个人博客,iphone上时间转换NaN问题,angular1,tgwuyangyang.github.io">
+      <meta name="description" content="angular2环境搭建">
+      <meta name="keywords" content="吴杨杨,个人博客,angular2环境搭建">
       <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
       <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
       <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
@@ -19,53 +19,55 @@
                <h1>Tgwuyangyang.GitHub.com</h1>
             </header>
             <hr>
-            <p class="title"><span>iphone上时间转换NaN问题</span></p>
+            <p class="title"><span>angular2环境搭建</span></p>
             <hr>
             <section id="main_content">
                <p class="author">
                   <span>作者：吴杨杨</span>
                   <a class="back" href="../../index.html">返回首页</a>
                </p>
-               <p class="time"><span>时间：2016-08-06</span></p>
-               <p>一周以前，我遇到一个问题，当时后台传来一个时间，格式是这样的</p>
+               <p class="time"><span>时间：2017-02-10</span></p>
+               <p>搭建本地开发环境前，需要安装node和npm，如下图所示，表示node和npm已安装。</p>
+               <img src="../../images/node-v.jpg" />
+               <p>确认你运行的 node 是v4.x.x或更高，npm 为3.x.x或更高，进行以下操作：</p>
+               <p>1.从github上克隆一个种子到本地，运行以下命令：</p>
                <blockquote>
                   <ul>
-                     <li>2016-07-31 11:20:30.0</li>
+                     <li>git clone https://github.com/angular/quickstart.git quickstart</li>
                   </ul>
                </blockquote>
-               <p>由于用的是angularjs框架，所以值就这么显示在了页面上</p>
-               <p>然后，给我分了一个bug，要让我将后面的.0去掉。我一看，这多简单啊，一格式化不就好了</p>
-               <pre><code>var time = new Date(parameter);<br>format(time); // 格式化（yyyy-MM-dd HH:mm:ss）
-               </code></pre>
-               <p>Google Chrome上一调试，好了。</p>
-               <p>过了一会，我无意中拿出了手机，上企业号上一看，时间显示NaN。马上打开代码检查，重新部署了一下，Chrome上测试，确实没问题。然后，iphone真机测试，还是乱码。我去，瞬间凌乱了......</p>
-               <p>没办法了，只好使出杀手锏。传说中的截取字符串，把最后两位截掉，终于好了。</p>
-               <pre><code>var str = "2016-07-31 11:20:30.0";<br>str = str.substring(0, 19);
-               </code></pre>
-               <p>几天后，又来一个bug，时间格式是这样的</p>
+               <p>如果不了解git命令，请查看我的另一篇文章<a target="_blank" href="../Angular2/setting.html">git常用命令</a></p>
+               <p>或者<a href="https://github.com/angular/quickstart/archive/master.zip">点此</a>直接下载zip压缩包。</p>
+               <p>2.进入quickstart文件夹</p>
                <blockquote>
                   <ul>
-                     <li>2016-7-31 11:20:30</li>
+                     <li>cd quickstart</li>
                   </ul>
                </blockquote>
-               <p>让我把月份改成这样</p>
+               <p>安装环境</p>
                <blockquote>
                   <ul>
-                     <li>2016-07-31 11:20:30</li>
+                     <li>npm install</li>
                   </ul>
                </blockquote>
-               <p>看到这，心真的好累......</p>
-               <p>没办法，只好找出格式化失败的原因。功夫不负有心人，终于找出来了。</p>
-               <p>Safari下转换时间，需要这种格式</p>
+               <p>因为网络的原因，安装比较慢，喝杯茶，慢慢等待。</p>
+               <p>安装完成后，运行</p>
                <blockquote>
                   <ul>
-                     <li>yyyy/MM/dd hh:mm:ss</li>
+                     <li>npm start</li>
                   </ul>
                </blockquote>
-               <p>所以，这样处理时间就好了</p>
-               <pre><code>var str = "2016-07-31 11:20:30";<br>str = str.replace(/\-/g, '/');<br>str = new Date(str).getTime();
-               </code></pre>
-               <p>把‘-’换成‘/’，再format就好了。</p>
+               <p>运行<code>npm start</code>会自动打开Chrome浏览器，出现以下网页，代表环境搭建成功。</p>
+               <img src="../../images/angular2-setting.jpg" />
+               <p>总结以下，其实就4个命令</p>
+               <blockquote>
+                  <ul>
+                     <li>git clone https://github.com/angular/quickstart.git quickstart</li>
+                     <li>cd quickstart</li>
+                     <li>npm install</li>
+                     <li>npm start</li>
+                  </ul>
+               </blockquote>
                <p>以上。</p>
                <hr>
                <section id="downloads" class="clearfix">

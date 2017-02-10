@@ -1,5 +1,6 @@
 var menu = [{"id": "1", "name": "java"}, 
             {"id": "2", "name": "Angular1"}, 
+            {"id": "2", "name": "Angular2"}, 
             {"id": "3", "name": "github"}, 
             {"id": "4", "name": "mui"},
             {"id": "5", "name": "css"},
@@ -9,11 +10,13 @@ var menu = [{"id": "1", "name": "java"},
 var java = [{"id": "1", "name": "RESTful架构", "url": "html/java/rest.html", "time": "2016-07-31"},
             {"id": "2", "name": "word、excel、pdf文件的加密与解密", "url": "html/java/confidentiality.html", "time": "2016-09-23"}
            ];
-var Angular1 = [{"id": "1", "name": "angular1学习笔记--iphone上时间转换NaN问题", "url": "html/Angular1/date-format.html", "time": "2016-08-02"},
-                 {"id": "2", "name": "angular1学习笔记--js实现打电话", "url": "html/Angular1/phone.html", "time": "2016-08-03"},
-                 {"id": "3", "name": "angular1学习笔记--SPA单页面应用页面跳转类似于微信的动画效果", "url": "html/Angular1/skip_cartoon.html", "time": "2016-09-21"},
-                 {"id": "4", "name": "angular1学习笔记--directive封装mui时间控件", "url": "html/Angular1/btn_date.html", "time": "2016-12-07"},
-                 {"id": "5", "name": "angular1学习笔记--directive封装d3.js", "url": "html/Angular1/d3.html", "time": "2017-01-14"}
+var Angular1 = [{"id": "1", "name": "iphone上时间转换NaN问题", "url": "html/Angular1/date-format.html", "time": "2016-08-02"},
+                 {"id": "2", "name": "js实现打电话", "url": "html/Angular1/phone.html", "time": "2016-08-03"},
+                 {"id": "3", "name": "SPA单页面应用页面跳转类似于微信的动画效果", "url": "html/Angular1/skip_cartoon.html", "time": "2016-09-21"},
+                 {"id": "4", "name": "directive封装mui时间控件", "url": "html/Angular1/btn_date.html", "time": "2016-12-07"},
+                 {"id": "5", "name": "directive封装d3.js", "url": "html/Angular1/d3.html", "time": "2017-01-14"}
+                ];
+var Angular2 = [{"id": "1", "name": "angular2环境搭建", "url": "html/Angular2/setting.html", "time": "2017-02-10"}
                 ];
 var github = [{"id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31"}];
 var mui = [{"id": "1", "name": "mui使用小技巧", "url": "html/mui/notes.html", "time": "2016-08-26"},
@@ -53,6 +56,9 @@ var initName = function() {
    }
    else if(type == "Angular1") {
       content = Angular1;
+   }
+   else if(type == "Angular2") {
+      content = Angular2;
    }
    else if(type == "github") {
       content = github;
