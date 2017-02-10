@@ -34,10 +34,10 @@ var type = "java";
 
 // 初始化title
 var initTitle = function() {
-   var html = '<span type="java" class="color" style="margin-left: 0px;">java</span>';
+   var html = '<span type="java" class="color" style="">java</span>';
 
    for(var i = 1; i < menu.length; i++) {
-      html += '<span type=' + menu[i].name + '>' + menu[i].name + '</span>';
+      html += '<span>|</span><span type=' + menu[i].name + '>' + menu[i].name + '</span>';
    }
 
    $(".catalog").html(html);
