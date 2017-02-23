@@ -15,7 +15,8 @@ var Angular1 = [{"id": "1", "name": "iphone上时间转换NaN问题", "url": "ht
                  {"id": "3", "name": "SPA单页面应用页面跳转类似于微信的动画效果", "url": "html/Angular1/skip_cartoon.html", "time": "2016-09-21"},
                  {"id": "4", "name": "directive封装mui时间控件", "url": "html/Angular1/btn_date.html", "time": "2016-12-07"},
                  {"id": "5", "name": "directive封装d3.js", "url": "html/Angular1/d3.html", "time": "2017-01-14"},
-                 {"id": "6", "name": "directive封装输入框获取焦点和失去焦点", "url": "html/Angular1/focus_blur.html", "time": "2017-02-13"}
+                 {"id": "6", "name": "directive封装输入框获取焦点和失去焦点", "url": "html/Angular1/focus_blur.html", "time": "2017-02-13"},
+                 {"id": "7", "name": "屏幕向上滑动，顶部菜单隐藏，屏幕向下滑动，顶部菜单显示", "url": "html/Angular1/scroll_up_down.html", "time": "2017-02-23"}
                 ];
 var Angular2 = [{"id": "1", "name": "angular2环境搭建", "url": "html/Angular2/setting.html", "time": "2017-02-10"}
                 ];
