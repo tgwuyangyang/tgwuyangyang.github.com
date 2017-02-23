@@ -29,7 +29,7 @@
                <p class="time"><span>时间：2017-01-14</span></p>
                <p>关于大数据的展示，或者报表，可以用d3.js实现，在angularjs框架中，就需要使用directive指令封装了。下面给一个例子：</p>
                <pre><code>angular.module('app')
-.directive('testDirective', ['$location', '$window', function($location, $window) {
+.directive('testDirective', function() {
    return {
       restrict: 'E',
       replace: true,
@@ -111,7 +111,7 @@
          }
       }
    };
-}]);
+});
                </code></pre>
                <p>其中<code>$watch</code>方法会监听值testData，如果testData发生变化，就会触发refresh()方法，refresh()方法的作用就是刷新svg：</p>
                <pre><code>scope.$watch(&quot;testData&quot;, function() {

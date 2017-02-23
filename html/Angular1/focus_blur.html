@@ -29,7 +29,7 @@
                <p class="time"><span>时间：2017-02-13</span></p>
                <p>代码如下：</p>
                <pre><code>angular.module('artiteckApp')
-   .directive('pzFocusBlur', ['$location', '$window', function($location, $window) {
+   .directive('pzFocusBlur', function() {
       return {
          restrict: 'A',
          scope: false,
@@ -49,7 +49,7 @@
             });
          }
       };
-   }]);
+   });
                </code></pre>
                <p>如果要修改父作用域的值，必须加上如下代码</p>
                <blockquote>

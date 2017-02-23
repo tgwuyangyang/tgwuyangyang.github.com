@@ -36,8 +36,6 @@
                <pre><code>&lt;a href=&quot;tel:10086&quot;&gt;&#25171;&#30005;&#35805;&lt;/a&gt;
                </code></pre>
                <p>但是，我们的需求是打电话，并要求将其添加至常用联系人。所以，不得不有一个click事件来处理ajax，并且只能在js里实现调用打电话。</p>
-               <p>google了好久，一直找不到答案，我搜的是'使用javaScript实现打电话'，大家标题给的是用javaScript实现，为什么全部都是上面那种方法，我也是醉了</p>
-               <p>没办法，只好自己解决了</p>
                <p>没办法，只能靠自己了......终于，水落石出</p>
                <pre><code>$window.location.href = &quot;tel:&quot; + 10086;
                </code></pre>
