@@ -26,6 +26,7 @@ var nginx = [{ "id": "1", "name": "阿里云服务器均衡负载SLB", "url": "h
 var WeChat = [{ "id": "1", "name": "微信小程序的优点与缺点", "url": "html/wechat/small_routine.html", "time": "2016-11-22" },
    { "id": "2", "name": "解决微信浏览器缓存页面问题", "url": "html/wechat/wechat_cache.html", "time": "2016-11-28" }
 ];
+var livelihood = [{ "id": "1", "name": "人性", "url": "html/livelihood/2017_03_18.html", "time": "2017-03-18" }];
 var other = [];
 var menu = [{ "id": "1", "name": "java", "data": java},
    { "id": "2", "name": "Angular1", "data": Angular1},
@@ -35,7 +36,8 @@ var menu = [{ "id": "1", "name": "java", "data": java},
    { "id": "6", "name": "css", "data": css},
    { "id": "7", "name": "nginx", "data": nginx},
    { "id": "8", "name": "WeChat", "data": WeChat},
-   { "id": "9", "name": "other", "data": other}
+   { "id": "9", "name": "other", "data": other},
+   { "id": "10", "name": "生活", "data": livelihood}
 ];
 var type = "java";
 
