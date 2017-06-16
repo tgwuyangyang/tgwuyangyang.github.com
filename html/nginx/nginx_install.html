@@ -9,6 +9,7 @@
       <LINK href="../../images/wu.ico" type="img/x-icon" rel=icon>
       <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" media="screen">
       <link rel="stylesheet" type="text/css" href="../../css/html/content.css">
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
       <title>吴杨杨的个人博客</title>
    </head>
 
@@ -148,6 +149,8 @@
                </a>
             </section>
             </section>
+            <hr>
+            <div id="comment"></div>
             <footer>
                <table class="border-none">
                   <tr>
@@ -160,5 +163,18 @@
          </div>
       </div>
       <script src="../../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script type="text/javascript">
+         var gitment = new Gitment({
+            owner: 'tgwuyangyang',
+            repo: 'blog-data',
+            oauth: {
+               client_id: 'bdb7790eaaefb0d99fd1',
+               client_secret: '228515d621788885f5e1f0fdae20a0da82bcfd9e',
+            }
+         })
+   
+         gitment.render("comment");
+      </script>
    </body>
 </html>
