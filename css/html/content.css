@@ -24,7 +24,7 @@ code {
 }
 
 pre code {
-   padding 0px;
+   padding: 0;
    margin-bottom: 0px;
    background-color: #ffffff;
    color: #000000;
@@ -78,4 +78,9 @@ a {
 
 p {
    word-break:break-all;
+}
+
+#comment {
+   max-width: 620px;
+   margin: 0 auto;
 }
