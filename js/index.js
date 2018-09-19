@@ -9,7 +9,8 @@ var Angular1 = [{ "id": "1", "name": "iphone上时间转换NaN问题", "url": "h
    { "id": "5", "name": "directive封装d3.js", "url": "html/Angular1/d3.html", "time": "2017-01-14" },
    { "id": "6", "name": "directive封装输入框获取焦点和失去焦点", "url": "html/Angular1/focus_blur.html", "time": "2017-02-13" },
    { "id": "7", "name": "屏幕向上滑动，顶部菜单隐藏，屏幕向下滑动，顶部菜单显示", "url": "html/Angular1/scroll_up_down.html", "time": "2017-02-23" },
-   { "id": "8", "name": "ng-change", "url": "html/Angular1/ng_change.html", "time": "2017-05-13" }
+   { "id": "8", "name": "ng-change", "url": "html/Angular1/ng_change.html", "time": "2017-05-13" },
+   { "id": "9", "name": "AngularJs删除历史浏览记录", "url": "html/Angular1/2018.9.19.html", "time": "2018-09-19" }
 ];
 var Angular2 = [{ "id": "1", "name": "angular2环境搭建", "url": "html/Angular2/setting.html", "time": "2017-02-10" }];
 var github = [{ "id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31" },
