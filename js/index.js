@@ -13,7 +13,8 @@ var AngularJs = [{ "id": "1", "name": "iphone上时间转换NaN问题", "url": "
    { "id": "9", "name": "AngularJs删除历史浏览记录", "url": "html/AngularJs/2018.9.19.html", "time": "2018-09-19" }
 ];
 var Angular = [{ "id": "1", "name": "angular2环境搭建", "url": "html/Angular/setting.html", "time": "2017-02-10" },
-               { "id": "2", "name": "angular6环境搭建", "url": "html/Angular/2018.9.29.html", "time": "2018-09-29" }
+               { "id": "2", "name": "angular6环境搭建", "url": "html/Angular/2018.9.29.html", "time": "2018-09-29" },
+               { "id": "3", "name": "angular6路由常用属性", "url": "html/Angular/2019.5.9.html", "time": "2019.5.9" }
 ];
 var github = [{ "id": "1", "name": "git常用命令", "url": "html/github/command.html", "time": "2016-07-31" },
    { "id": "2", "name": "使用github中的Issues给博客搭建评论功能", "url": "html/github/comment.html", "time": "2017-06-16" }];
